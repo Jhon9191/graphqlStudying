@@ -2,37 +2,65 @@ const { gql } = require("apollo-server");
 
 const rootTypeDefs = gql`
      type Query {
-        hi: String!
-        hello: String!
-        id: ID!
-        name: String!
-        age: Int!
-        average: Float!
-        married: Boolean!
-        arrayString: [String]!
+        # hi: String!
+        # hello: String!
+        # id: ID!
+        # name: String!
+        # age: Int!
+        # average: Float!
+        # married: Boolean!
+        # arrayString: [String]!
+        user: User!
+        users: [User!]!
+    },
+
+    type User{
+        id: ID!,
+        username: String!
     }
 
 `
 const rootResolvers = {
     Query: {
-        id: async () => {
-            return 1
+
+        user: () => {
+            return{
+                id: "a34sd231",
+                username: "João"
+            }
         },
-        name: async () => {
-            return "João Antônio"
+
+        users: () => {
+            return [
+                {
+                    id: "a34sd231",
+                    username: "João"
+                },
+                {
+                    id: "a34sd231",
+                    username: "s"
+                }
+            ]
         },
-        age: async () => {
-            return 30
-        },
-        average: async () => {
-            return 30.5
-        },
-        married: async () => {
-            return true
-        },
-        arrayString: async () => {
-            return ["Ola","Bom dia","João"]
-        }
+
+        // id: async () => {
+        //     return 1
+        // },
+        // name: async () => {
+        //     return "João Antônio"
+        // },
+        // age: async () => {
+        //     return 30
+        // },
+        // average: async () => {
+        //     return 30.5
+        // },
+        // married: async () => {
+        //     return true
+        // },
+        // arrayString: async () => {
+        //     return ["Ola","Bom dia","João"]
+        // }
         // hi: () => "Ola",
         // hello: async () => {
         //     return "Olá 2"
