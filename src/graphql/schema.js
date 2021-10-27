@@ -1,72 +1,18 @@
 const { gql } = require("apollo-server");
+import { userResolvers } from "./user/resolvers";
+import { userTypedefs } from "./user/typedefs";
 
 const rootTypeDefs = gql`
      type Query {
-        # hi: String!
-        # hello: String!
-        # id: ID!
-        # name: String!
-        # age: Int!
-        # average: Float!
-        # married: Boolean!
-        # arrayString: [String]!
-        user: User!
-        users: [User!]!
-    },
-
-    type User{
-        id: ID!,
-        username: String!
+        _empty: Boolean
     }
 
 `
 const rootResolvers = {
     Query: {
-
-        user: () => {
-            return{
-                id: "a34sd231",
-                username: "João"
-            }
-        },
-
-        users: () => {
-            return [
-                {
-                    id: "a34sd231",
-                    username: "João"
-                },
-                {
-                    id: "a34sd231",
-                    username: "s"
-                }
-            ]
-        },
-
-        // id: async () => {
-        //     return 1
-        // },
-        // name: async () => {
-        //     return "João Antônio"
-        // },
-        // age: async () => {
-        //     return 30
-        // },
-        // average: async () => {
-        //     return 30.5
-        // },
-        // married: async () => {
-        //     return true
-        // },
-        // arrayString: async () => {
-        //     return ["Ola","Bom dia","João"]
-        // }
-        // hi: () => "Ola",
-        // hello: async () => {
-        //     return "Olá 2"
-        // }   
-    },
+        _empty: () => true
+    }
 };
 
-export const typeDefs = [rootTypeDefs];
-export const resolvers = [rootResolvers];
+export const typeDefs = [rootTypeDefs, userTypedefs];
+export const resolvers = [rootResolvers, userResolvers];
