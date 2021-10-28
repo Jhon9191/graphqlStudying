@@ -1,27 +1,18 @@
+import fetch from 'node-fetch';
 export const userResolvers = {
+    
     Query: {
-        user: () => {
+        user: async () => {
             return {
                 id: "sdsdasdasda2",
                 userName: "João Antônio"
             }
         },
 
-        users: () => {
-            return [
-                {
-                    id: "sdsdasdasda2",
-                    userName: "João Antônio1"
-                },
-                {
-                    id: "dsfsadasd",
-                    userName: "João Antônio2"
-                },
-                {
-                    id: "sdsdasddsasdsdsda2",
-                    userName: "João Antônio3"
-                }
-            ]
+        users: async (_,__,{ hello }) => {
+            console.log(hello);
+            const users = await fetch("http://localhost:3000/users")
+            return users.json();
         },
 
     },

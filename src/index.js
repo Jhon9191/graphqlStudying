@@ -3,7 +3,12 @@ import { typeDefs, resolvers } from './graphql/schema';
 
 const server = new ApolloServer({
   typeDefs,
-  resolvers
+  resolvers,
+  context: () => {
+    return {
+      hello: 123
+    }
+  }
 });
 
 server.listen(4003).then(({url}) => {
