@@ -1,4 +1,3 @@
-import fetch from 'node-fetch';
 export const userResolvers = {
     
     Query: {
@@ -11,6 +10,7 @@ export const userResolvers = {
         users: async (_,__,{ getUsers }) => {
             const users = await getUsers();
             return users.json();
+      
         },
 
     },

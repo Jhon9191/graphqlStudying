@@ -1,29 +1,15 @@
 export const postResolvers = {
     Query: {
-        post: () => {
-            return {
-                id: "sdsdasdasda2",
-                title: "Sexo"
-            }
+        post: async (_,{ id },{ getPosts }) => {
+            const response = await getPosts("/" + id);
+            return response.json();
         },
 
-        posts: () => {
-            return [
-                {
-                    id: "sdsdasdasda2",
-                    title: "Sexo"
-                },
-                {
-                    id: "dsfsadasd",
-                    title: "Sexo" 
-                },
-                {
-                    id: "sdsdasddsasdsdsda2",
-                    title: "Sexo" 
-                }
-            ]
-        },
-
+        posts: async (_,__,{ getPosts }) => {
+            const response = await getPosts();
+            const posts = await response.json();
+            return posts;
+        }
     },
 }
 
