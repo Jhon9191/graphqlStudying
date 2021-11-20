@@ -7,10 +7,11 @@ export const userResolvers = {
             return user;
         },
 
-        users: async (_,__,{ getUsers }) => {
-            const users = await getUsers();
-            return users.json();
-      
+        users: async (_,{ input },{ getUsers }) => {
+            const ApiFiltersInput = new URLSearchParams(input)
+            const response = await getUsers("/?"+ ApiFiltersInput);
+            const users = await response.json();
+            return users;
         },
 
     },
