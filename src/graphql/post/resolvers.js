@@ -11,5 +11,13 @@ export const postResolvers = {
             return posts;
         }
     },
+    Post:{
+        unixTimesTemp: ({ createdAt }) =>{
+            const timestemp = new Date(createdAt).getTime()/1000;
+            return Math.floor(timestemp);
+             //returnconsole.log("Chamado", parent.id);
+            //return Math.random();
+        }
+    }
 }
 
