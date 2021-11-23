@@ -1,3 +1,9 @@
+const user = async ({userId}, _, {getUsers}) => {
+    const response = await getUsers("/" + userId);
+    const user = await response.json();
+    return user;
+}
+
 export const postResolvers = {
     Query: {
         post: async (_, { id }, { getPosts }) => {
@@ -12,6 +18,7 @@ export const postResolvers = {
             const posts = await response.json();
             return posts;
         }
-    }
+    },
+    Post:{ user }
 }
 
