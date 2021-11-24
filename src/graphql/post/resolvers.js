@@ -1,8 +1,13 @@
-const user = async ({userId}, _, {getUsers}) => {
-    const response = await getUsers("/" + userId);
-    const user = await response.json();
-    return user;
-}
+import DataLoader from 'dataloader';
+import fetch from 'node-fetch';
+
+const userDataLoader = new DataLoader(async (ids) => {
+    const urlQuery = ids.join('&id=');
+    const url = 'http://localhost:3000/users/?id=' + urlQuery;
+    const response = await fetch(url);
+    const users = await response.json();
+    return ids.map((id) => users.find((user) => user.id === id));
+});
 
 export const postResolvers = {
     Query: {
@@ -19,6 +24,8 @@ export const postResolvers = {
             return posts;
         }
     },
-    Post:{ user }
+    Post:{ 
+        user:  async ({userId}, _, {getUsers}) => {
+            return userDataLoader.load(userId);
+    }}
 }
-
