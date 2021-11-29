@@ -1,3 +1,7 @@
+const posts = ({ id }, _, { postDataLoader }) => {
+    return postDataLoader.load(id);
+};
+
 export const userResolvers = {
     
     Query: {
@@ -15,5 +19,6 @@ export const userResolvers = {
         },
 
     },
+    User: {posts}
 }
 

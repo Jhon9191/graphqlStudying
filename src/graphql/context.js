@@ -1,14 +1,16 @@
 import fetch from 'node-fetch';
+import { makePostDataLoader } from './post/datalaoders';
 import { getPosts } from './post/utils';
 import { makeUserDataLoader } from './user/dataloaders';
 import { getUsers } from './user/utils';
 
-const API_URL = process.env.API_URL;
-
+const _getPosts = getPosts(fetch);
+const _getUsers = getUsers(fetch);
 export const context = () => {
     return {
-        userDataLoader: makeUserDataLoader(getUsers(fetch)),
-        getUsers: getUsers(fetch),
-        getPosts: getPosts(fetch),
+        postDataLoader: makePostDataLoader(_getPosts),
+        userDataLoader: makeUserDataLoader(_getUsers),
+        getUsers: _getUsers,
+        getPosts: _getPosts,
     };
 }
