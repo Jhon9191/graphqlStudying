@@ -1,5 +1,5 @@
-const posts = ({ id }, _, { postDataLoader }) => {
-    return postDataLoader.load(id);
+const posts = ({ id }, _, { dataSources }) => {
+    return dataSources.postApi.batchLoadByUserId(id);
 };
 
 export const userResolvers = {
