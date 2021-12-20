@@ -26,12 +26,14 @@ export const userTypedefs = gql`
         firstName: String!
         lastName: String!
         userName: String!
+        password: String!
     }
 
     input UpdateUserInput {
         firstName: String
         lastName: String
         userName: String
+        password: String
     }
 
 `

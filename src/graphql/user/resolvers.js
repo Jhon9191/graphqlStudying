@@ -26,7 +26,6 @@ const posts = ({ id }, _, { dataSources }) => {
   return dataSources.postApi.batchLoadByUserId(id);
 };
 
-
 export const userResolvers = {
     Query: {user,users },
     Mutation: { createUser, updateUser, deleteUser },
