@@ -3,7 +3,6 @@ import { UserInputError, ValidationError } from 'apollo-server-errors';
 
 export const createUserFn = async (userData, dataSource) => {
   await checkUserFields(userData, true);
-
   const indexRefUser = await dataSource.get('', {
     _limit: 1,
     _sort: 'indexRef',
@@ -103,8 +102,8 @@ const checkUserFields = async(user, allFieldsRequired = false) => {
   if (user.password && !user.passwordHash) {
     const { password } = user;
     const passwordHash = await bcrypt.hash(password, 12);
-    console.log(passwordHash);
     user.passwordHash = passwordHash;
     delete user['password'];
   }
+
 };
