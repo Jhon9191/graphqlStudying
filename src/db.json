@@ -211,16 +211,6 @@
       "indexRef": 26,
       "createdAt": "2021-12-22T00:53:21.872Z",
       "id": "IyvXgh7"
-    },
-    {
-      "firstName": "pedro",
-      "lastName": "4243244",
-      "userName": "sssss",
-      "passwordHash": "$2b$12$z4cROU8xUZDkEjKqKPiq1.lQZhjAQZbuPTj7sSiaMHBi5G7IAge6K",
-      "indexRef": 27,
-      "createdAt": "2021-12-22T14:34:40.274Z",
-      "id": "I80BTkH",
-      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJJODBCVGtIIiwiaWF0IjoxNjQwMjgwNzQ2LCJleHAiOjE2NDA4ODU1NDZ9.tmKfukbDCP9igHJKS2U5U1E_dJdYLP4koON-2zqRg1g"
     }
   ],
   "posts": [
