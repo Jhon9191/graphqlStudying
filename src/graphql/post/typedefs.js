@@ -30,7 +30,7 @@ export const postTypedefs = gql`
     input UpdatePostInput {
         title: String
         body: String
-        userId: String
+        #userId: String
     }
 
 `

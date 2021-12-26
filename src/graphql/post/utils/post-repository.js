@@ -17,7 +17,20 @@ export const updatePostFn = async (postID, postData, dataSource) => {
     throw new ValidationError('Missing postId');
   }
 
-  const { title, body, userId } = postData;
+  const foundPost = await dataSource.get(postID, undefined, {
+    cacheOptions: { ttl: 0 },
+  });
+
+  if (!foundPost) {
+    throw new FetchError('Could not find the post you are looking for.');
+  }
+
+  if (foundPost.userId !== dataSource.context.loggedUserId) {
+    throw new AuthenticationError('You cannot upate this post 😠!');
+  }
+
+  const { userId } = foundPost;
+  const { title, body } = postData;
 
   if (typeof title !== 'undefined') {
     if (!title) {
