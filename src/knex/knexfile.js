@@ -1,7 +1,7 @@
 const { resolve } = require("path");
 const dotenv = require("dotenv");
 
-otenv.config({
+dotenv.config({
   path: resolve(__dirname, '..', '..', '.env'),
 });
 
