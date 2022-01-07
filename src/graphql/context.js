@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
-import { UsersApi } from './user/datasources';
+import { UsersApi } from './schema/user/datasources';
 
-const verifyJwtToken = async(token) => {
+const verifyJwtToken = async (token) => {
   try {
     const { userId } = jwt.verify(token, process.env.JWT_SECRET);
     const userApi = new UsersApi();
@@ -15,7 +15,7 @@ const verifyJwtToken = async(token) => {
   }
 };
 
-const authorizeUserWithBearerToken = async(req) => {
+const authorizeUserWithBearerToken = async (req) => {
   const { headers } = req;
   const { authorization } = headers;
   try {
@@ -44,11 +44,11 @@ const cookieParser = (cookiesHeader) => {
   return JSON.parse(JSON.stringify(parsedCookie));
 };
 
-export const context = async({ req, res }) => {
+export const context = async ({ req, res }) => {
   let loggedUserId = await authorizeUserWithBearerToken(req);
 
   console.log(req.headers.cookie);
-  
+
   if (!loggedUserId) {
     if (req.headers.cookie) {
       const { jwtToken } = cookieParser(req.headers.cookie);
@@ -58,6 +58,6 @@ export const context = async({ req, res }) => {
 
   return {
     loggedUserId,
-    res
+    res,
   };
 };
