@@ -1,4 +1,5 @@
-import knexFn from 'knex';
-import knexfile from './knexfile';
+const knexfile = require('./knexfile');
+const file = knexfile.development;
+const knex = require('knex')(file);
 
-export const knex = knexFn(knexfile[process.env.NODE_ENV]);
+module.exports = knex;
